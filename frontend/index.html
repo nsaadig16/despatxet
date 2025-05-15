@@ -13,7 +13,7 @@
   </main>
 
   <script>
-    fetch("https://your-fastapi-url.com/status") // ← change this to your real API URL
+    fetch("http://localhost:8000/")
       .then(response => response.json())
       .then(data => {
         const statusDiv = document.getElementById("status");
