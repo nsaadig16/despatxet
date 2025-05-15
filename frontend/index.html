@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Room Status</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Room Occupancy</h1>
+    <div id="status">Loading...</div>
+  </main>
+
+  <script>
+    fetch("https://your-fastapi-url.com/status") // ← change this to your real API URL
+      .then(response => response.json())
+      .then(data => {
+        const statusDiv = document.getElementById("status");
+        if (data.occupied) {
+          statusDiv.textContent = "Someone is in the room";
+          statusDiv.className = "occupied";
+        } else {
+          statusDiv.textContent = "Room is empty";
+          statusDiv.className = "empty";
+        }
+      })
+      .catch(error => {
+        const statusDiv = document.getElementById("status");
+        statusDiv.textContent = "Error fetching status";
+        statusDiv.className = "error";
+        console.error("Fetch error:", error);
+      });
+  </script>
+</body>
+</html>
